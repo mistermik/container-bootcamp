@@ -50,8 +50,18 @@
       <div class="col-lg-24">
         <h1>
           <!-- modifying code here -->
+          
           </h1>
       </div>
+      div {
+            width: 400px;
+            height: 350px;
+            background: url('https://raw.githubusercontent.com/sviera91/DockerDemo/master/ninja.cat.gif') left bottom no-repeat;
+            position: absolute;
+            -webkit-animation: mymove 20s infinite; /* Chrome, Safari, Opera */
+            animation: mymove 20s infinite;
+        }
+
    </div>
   </section>
 </template>
