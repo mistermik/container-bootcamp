@@ -15,7 +15,6 @@
       </div>
       <div class="col-lg-12 credits">
         MISTERMIK
-        xxx
       </div>
       <div class="col-lg-6">
       </div>
