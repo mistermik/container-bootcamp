@@ -26,48 +26,4 @@ events.on("push", (brigadeEvent, project) => {
     // start pipeline
     console.log(`==> starting pipeline for docker image: ${brigConfig.get("webACRImage")}:${brigConfig.get("imageTag")}`)
     
-    var pipeline = new Group()
-    pipeline.add(docker)
-    pipeline.add(k8s)
-    if (brigConfig.get("branch") == "master") {
-        pipeline.runEach()
-    } else {
-        console.log(`==> no jobs to run when not master`)
-    }  
-})
-
-events.on("after", (event, proj) => {
-    console.log("brigade pipeline finished successfully")    
-})
-
-function dockerJobRunner(config, d) {
-    d.storage.enabled = false
-    d.image = "chzbrgr71/dockernd:node"
-    d.privileged = true
-    d.tasks = [
-        "dockerd-entrypoint.sh &",
-        "echo waiting && sleep 20",
-        "cd /src/app/web",
-        `docker login ${config.get("acrServer")} -u ${config.get("acrUsername")} -p ${config.get("acrPassword")}`,
-        `docker build --build-arg BUILD_DATE='1/1/2017 5:00' --build-arg IMAGE_TAG_REF=${config.get("imageTag")} --build-arg VCS_REF=${config.get("gitSHA")} -t ${config.get("webImage")} .`,
-        `docker tag ${config.get("webImage")} ${config.get("webACRImage")}:${config.get("imageTag")}`,
-        `docker push ${config.get("webACRImage")}:${config.get("imageTag")}`,
-        "killall dockerd"
-    ]
-}
-
-function kubeJobRunner (config, k) {
-    k.storage.enabled = false
-    k.image = "lachlanevenson/k8s-kubectl:v1.8.2"
-    k.tasks = [
-        `kubectl set image deployment/heroes-web-deploy heroes-web-cntnr=mistermikcontainer.azurecr.io/azureworkshop/rating-web:${config.get("imageTag")}`
-    ]
-}
-
-function getBranch (p) {
-    if (p.ref) {
-        return p.ref.substring(11)
-    } else {
-        return "PR"
-    }
-}
+    
