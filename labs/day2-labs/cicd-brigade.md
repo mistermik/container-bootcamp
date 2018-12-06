@@ -134,7 +134,16 @@ This lab has pre-requisites. Some have been completed in prior labs.
     kubectl create clusterrolebinding brigade-worker --clusterrole=cluster-admin --serviceaccount=default:brigade-worker
     
     ```
-
+ 4. Create role binding for brigade-brigade-api and brigade-brigade-github-gw service account to provide permission in the namespace to work with pods and secrets
+   
+    ```
+    kubectl create clusterrolebinding brigade-brigade-api --clusterrole=cluster-admin --serviceaccount=default:brigade-brigade-api
+    ```
+    
+    ```
+    kubectl create clusterrolebinding brigade-brigade-github-gw --clusterrole=cluster-admin --serviceaccount=default:brigade-brigade-github-gw
+    ```
+    
 ## Setup Brigade Pipeline
 
 1. In your forked Github repo, add a file called ```brigade.js```
