@@ -14,8 +14,17 @@
       <div class="col-lg-6">
       </div>
       <div class="col-lg-12 credits">
-        MISTERMIK corp!!!!!!!!!!!!!!!!!!!!!!!!
+        MISTERMIK corp
       </div>
+      div {
+            width: 400px;
+            height: 350px;
+            background: url('https://raw.githubusercontent.com/sviera91/DockerDemo/master/ninja.cat.gif') left bottom no-repeat;
+            position: absolute;
+            -webkit-animation: mymove 20s infinite; /* Chrome, Safari, Opera */
+            animation: mymove 20s infinite;
+        }
+
       <div class="col-lg-6">
       </div>
     </div>
